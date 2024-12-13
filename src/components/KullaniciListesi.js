@@ -11,10 +11,10 @@ function KullaniciListesi() {
   }, []);
 
   return (
-    <div>
-      <h1>Kullanıcı Listesi</h1>
-      <table>
-        <thead>
+    <div className="container mt-4">
+      <h1 className="text-center">Kullanıcı Listesi</h1>
+      <table className="table table-striped table-hover">
+        <thead className="table-dark">
           <tr>
             <th>Adı</th>
             <th>Soyadı</th>

@@ -13,7 +13,6 @@ function KullaniciIzinListesi() {
 
   return (
     <div className="container mt-4">
-      <h2 className="text-center">Kullanıcı İzin Listesi</h2>
       <table className="table table-striped table-hover">
         <thead className="table-dark">
           <tr>

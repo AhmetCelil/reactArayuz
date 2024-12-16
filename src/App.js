@@ -1,25 +1,23 @@
 import React from "react";
-import { Container, Row, Col } from "reactstrap";  // Bootstrap Container ve Row, Col bileşenlerini içe aktarıyoruz
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import NavbarComponent from "./components/NavbarComponent";
 import KullaniciListesi from "./components/KullaniciListesi";
 import KullaniciIzinListesi from "./components/KullaniciIzinListesi";
-import 'bootstrap/dist/css/bootstrap.min.css';  // Bootstrap CSS
+import KullaniciEkle from "./components/KullaniciEkle";  // Yeni bileşeni içe aktardık
+import KullaniciGuncelle from "./components/KullaniciGuncelle";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <Container className="App">
-      {/* İlk Row, birinci sütun solda, ikinci sütun sağda */}
-      <Row>
-        {/* Kullanıcı Listesi Solda */}
-        <Col sm="6">
-          <KullaniciListesi />
-        </Col>
-        
-        {/* Kullanıcı İzin Listesi Sağda */}
-        <Col sm="6">
-          <KullaniciIzinListesi />
-        </Col>
-      </Row>
-    </Container>
+    <Router>
+      <NavbarComponent />
+      <Routes>
+        <Route path="/" element={<KullaniciListesi />} />
+        <Route path="/kullanici-ekle" element={<KullaniciEkle />} />
+        <Route path="/kullanici-guncelle" element={<KullaniciGuncelle />} />
+        <Route path="/kullanici-verileri" element={<KullaniciListesi />} />
+      </Routes>
+    </Router>
   );
 }
 

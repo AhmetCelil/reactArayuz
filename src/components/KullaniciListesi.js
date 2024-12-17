@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function KullaniciListesi() {
   const [kullanicilar, setKullanicilar] = useState([]);
@@ -21,7 +22,7 @@ function KullaniciListesi() {
         endpoint = `/api/kullanici-bilgi/izin-bilgileri?email=${email}&kullaniciId=${kullaniciId}`;
         break;
       case "konum":
-        endpoint = `/api/konum-bilgi/getir?email=${email}&kullaniciId=${kullaniciId}`;
+        endpoint = `/api/konum-bilgi/getir?email=${email}`;
         break;
       default:
         return;
@@ -30,13 +31,15 @@ function KullaniciListesi() {
     try {
       const response = await fetch(`http://localhost:8088${endpoint}`);
       const data = await response.json();
-      setDetaylar((prev) => ({ ...prev, [email]: { ...prev[email], [tur]: data } }));
+      setDetaylar((prev) => ({
+        ...prev,
+        [email]: { ...prev[email], [tur]: data },
+      }));
     } catch (error) {
       console.error(`${tur} bilgileri alınamadı:`, error);
     }
   };
   
-
 
   return (
     <div className="container mt-4">
@@ -78,12 +81,12 @@ function KullaniciListesi() {
                 >
                   İzin Bilgileri
                 </button>
-                <button
-                  className="btn btn-success btn-sm"
-                  onClick={() => bilgiGetir(kullanici.id, "konum")}
-                >
+                <button className="btn btn-success btn-sm">
+                <Link to={`/konum/${kullanici.email}`} className="text-white text-decoration-none">
                   Konum Bilgileri
-                </button>
+                </Link>
+              </button>
+
               </td>
             </tr>
           ))}

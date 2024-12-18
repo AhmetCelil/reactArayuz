@@ -19,7 +19,7 @@ function KullaniciListesi() {
         endpoint = `/api/kullanici-bilgi/veli-bilgileri?email=${email}&kullaniciId=${kullaniciId}`;
         break;
       case "izin":
-        endpoint = `/api/kullanici-bilgi/izin-bilgileri?email=${email}&kullaniciId=${kullaniciId}`;
+        endpoint = `/izin/listele?kullaniciId=${kullaniciId}`;
         break;
       case "konum":
         endpoint = `/api/konum-bilgi/getir?email=${email}`;
@@ -30,15 +30,19 @@ function KullaniciListesi() {
   
     try {
       const response = await fetch(`http://localhost:8088${endpoint}`);
+      if (!response.ok) {
+        throw new Error(`HTTP Hatası! Durum: ${response.status}`);
+      }
       const data = await response.json();
       setDetaylar((prev) => ({
         ...prev,
-        [email]: { ...prev[email], [tur]: data },
+        [kullaniciId]: { ...prev[kullaniciId], [tur]: data },
       }));
     } catch (error) {
       console.error(`${tur} bilgileri alınamadı:`, error);
     }
   };
+  
   
 
   return (
@@ -75,12 +79,15 @@ function KullaniciListesi() {
                 >
                   Veli Bilgileri
                 </button>
-                <button
-                  className="btn btn-warning btn-sm me-2"
-                  onClick={() => bilgiGetir(kullanici.id, "izin")}
-                >
-                  İzin Bilgileri
+                <button className="btn btn-warning btn-sm me-2">
+                  <Link
+                    to={`/izin/${kullanici.id}`}
+                    className="text-white text-decoration-none"
+                  >
+                    İzin Bilgileri
+                  </Link>
                 </button>
+
                 <button className="btn btn-success btn-sm">
                 <Link to={`/konum/${kullanici.email}`} className="text-white text-decoration-none">
                   Konum Bilgileri

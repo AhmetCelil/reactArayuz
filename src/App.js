@@ -7,6 +7,7 @@ import KullaniciEkle from "./components/KullaniciEkle";  // Yeni bileşeni içe 
 import KullaniciGuncelle from "./components/KullaniciGuncelle";
 import KonumBilgileri from "./components/KonumBilgileri";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import IzinBilgileri from "./components/IzinBilgileri";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<KullaniciListesi />} />
         <Route path="/kullanici-ekle" element={<KullaniciEkle />} />
         <Route path="/kullanici-guncelle" element={<KullaniciGuncelle />} />
+        <Route path="/izin/:kullaniciId" element={<IzinBilgileri />} />
         <Route path="/konum/:email" element={<KonumBilgileri />} />
         <Route path="/kullanici-verileri" element={<KullaniciListesi/>}/>
       </Routes>

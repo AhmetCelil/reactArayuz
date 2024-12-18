@@ -62,7 +62,6 @@ function KonumBilgileri() {
         <table className="table table-striped table-hover">
         <thead>
           <tr>
-            <th>Email</th>
             <th>Enlem</th>
             <th>Boylam</th>
             <th>Adres</th>
@@ -72,7 +71,6 @@ function KonumBilgileri() {
           {konumBilgileri.length > 0 ? (
             konumBilgileri.map((konum, index) => (
               <tr key={index}>
-                <td>{email}</td>
                 <td>{konum.enlem || "Bilinmiyor"}</td>
                 <td>{konum.boylam || "Bilinmiyor"}</td>
                 <td>{konum.address || "Adres Yok"}</td>
